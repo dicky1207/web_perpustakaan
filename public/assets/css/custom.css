@@ -1,0 +1,71 @@
+/**
+ *
+ * You can write your CSS code here, DO NOT touch the default JavaScript file
+ * because it will make it harder for you to update.
+ *
+ */
+
+/* Override primary color to #5b14b8 */
+
+/* Header */
+.navbar-bg {
+    background-color: #5b14b8 !important;
+}
+
+/* Sidebar active */
+.main-sidebar .sidebar-menu li.active a {
+    background-color: #5b14b8 !important;
+    color: #fff !important;
+}
+
+.main-sidebar .sidebar-menu li.active ul.dropdown-menu {
+    background-color: #f8fafb !important;
+}
+
+.main-sidebar .sidebar-menu li.active ul.dropdown-menu li a:hover {
+    background-color: #5b14b8 !important;
+    color: #fff !important;
+}
+
+.main-sidebar .sidebar-menu li ul.dropdown-menu li.active a {
+    color: #5b14b8 !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #5b14b8 !important;
+    border-color: #5b14b8 !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #4a0f99 !important; /* Slightly darker for hover */
+    border-color: #4a0f99 !important;
+}
+
+/* Pagination */
+.page-item.active .page-link {
+    background-color: #5b14b8 !important;
+    border-color: #5b14b8 !important;
+}
+
+.page-link:hover {
+    background-color: #5b14b8 !important;
+    color: #fff !important;
+}
+
+/* Other primary elements */
+.bg-primary {
+    background-color: #5b14b8 !important;
+}
+
+.text-primary {
+    color: #5b14b8 !important;
+}
+
+.border-primary {
+    border-color: #5b14b8 !important;
+}
+
+/*# sourceMappingURL=custom.css.map */
