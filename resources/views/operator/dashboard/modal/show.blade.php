@@ -25,8 +25,8 @@
               <tr>
                 <td>{{ $login_log->user->name }}</td>
                 <td>{{ $login_log->last_login_ip }}</td>
-                <td>{{ $login_log->time($login_log->last_login_time) }}</td>
-                <td>{{ $login_log->indonesian_date_format($login_log->last_login_date) }}</td>
+                <td>{{ \Carbon\Carbon::parse($login_log->created_at)->setTimezone('Asia/Jakarta')->format('H:i') }}</td>
+                <td>{{ $login_log->indonesian_date_format(\Carbon\Carbon::parse($login_log->created_at)->setTimezone('Asia/Jakarta')->toDateString()) }}</td>
               </tr>
               @empty
               <tr>

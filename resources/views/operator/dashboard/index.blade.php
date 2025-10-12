@@ -122,9 +122,6 @@
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Log Pengguna</h5>
         <div>
-          <button type="button" class="btn btn-light btn-sm mr-2" id="refresh-logs">
-            <i class="fas fa-sync-alt"></i> Refresh
-          </button>
           <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#staticBackdrop">
             Lihat semua
           </button>
@@ -199,36 +196,6 @@
         }
       }
     }
-  });
-
-  // Refresh logs button handler
-  document.getElementById('refresh-logs').addEventListener('click', function() {
-    fetch('{{ route("operator.dashboard.logs") }}')
-      .then(response => response.json())
-      .then(data => {
-        const list = document.querySelector('.card-body ul.list-unstyled');
-        list.innerHTML = '';
-        if (data.length === 0) {
-          list.innerHTML = '<li class="text-center text-danger font-weight-bold text-uppercase">Data tidak ada!</li>';
-          return;
-        }
-        data.forEach(log => {
-          const li = document.createElement('li');
-          li.className = 'media mb-3 p-2 rounded shadow-sm bg-light';
-          li.innerHTML = `
-            <img src="${log.user.image ? '{{ asset('') }}' + log.user.image : '{{ asset('public/assets/img/avatar/default.png') }}'}" alt="User Avatar" class="mr-3 rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">
-            <div class="media-body">
-              <h6 class="mt-0 mb-1">${log.user.name}</h6>
-              <small class="text-muted">IP: ${log.last_login_ip}</small><br>
-              <small class="text-muted">${log.relative_time}</small>
-            </div>
-          `;
-          list.appendChild(li);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching logs:', error);
-      });
   });
 </script>
 @endpush

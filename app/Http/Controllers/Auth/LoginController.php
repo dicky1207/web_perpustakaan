@@ -48,15 +48,15 @@ class LoginController extends Controller
 
         if ($user) {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                if (auth()->user()->role_id === 1 || auth()->user()->id === 2) {
-                    User::where('id', auth()->user()->id)->update(['status' => 1]);
-                    $this->saveUserLoginLog(auth()->user()->id, $request->getClientIp());
+                User::where('id', auth()->user()->id)->update(['status' => 1]);
+                $this->saveUserLoginLog(auth()->user()->id, $request->getClientIp());
 
+                $role_id = auth()->user()->role_id;
+                if ($role_id === 1) {
                     return redirect()->route('admin.dashboard.index');
+                } elseif ($role_id === 2) {
+                    return redirect()->route('operator.dashboard.index');
                 } else {
-                    User::where('id', auth()->user()->id)->update(['status' => 1]);
-                    $this->saveUserLoginLog(auth()->user()->id, $request->getClientIp());
-
                     return redirect()->route('anggota.dashboard.index');
                 }
             } else {
@@ -85,10 +85,11 @@ class LoginController extends Controller
 
     public function saveUserLoginLog($user_id, $last_login_ip)
     {
+        $now = Carbon::now('Asia/Jakarta');
         $authenticate_log = new AuthenticateLog();
         $authenticate_log->user_id = $user_id;
-        $authenticate_log->last_login_date = Carbon::now()->toDateString();
-        $authenticate_log->last_login_time = Carbon::now()->toTimeString();
+        $authenticate_log->last_login_date = $now->toDateString();
+        $authenticate_log->last_login_time = $now->toTimeString();
         $authenticate_log->last_login_ip = $last_login_ip;
         $authenticate_log->save();
     }

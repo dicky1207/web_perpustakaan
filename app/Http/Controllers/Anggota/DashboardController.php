@@ -35,7 +35,7 @@ class DashboardController extends Controller
             ->get();
 
         $user_logs = AuthenticateLog::with('user')->where('user_id', auth()->user()->id)->latest()->take(10)->get();
-        $login_logs = AuthenticateLog::with('user')->where('user_id', auth()->user()->id)->latest()->get();
+        $login_logs = AuthenticateLog::with('user')->where('user_id', auth()->user()->id)->whereDate('last_login_date', today())->latest()->get();
 
         return view('anggota.dashboard.index', compact('book_user', 'book_approved', 'book_waiting', 'book_rejected', 'overdue_books', 'recent_activities', 'monthly_stats', 'user_logs', 'login_logs'));
     }

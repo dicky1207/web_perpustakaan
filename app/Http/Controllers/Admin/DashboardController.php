@@ -35,7 +35,7 @@ class DashboardController extends Controller
 
         // Authenticate User Log
         $authenticate_logs = AuthenticateLog::latest()->take(10)->get();
-        $login_logs = AuthenticateLog::latest()->get();
+        $login_logs = AuthenticateLog::whereDate('last_login_date', today())->latest()->get();
 
         return view('admin.dashboard.index', compact('total_users', 'total_admins', 'total_operators', 'total_members', 'total_books', 'total_book_types', 'total_borrowings', 'approved_borrowings', 'pending_borrowings', 'rejected_borrowings', 'authenticate_logs', 'login_logs'));
     }

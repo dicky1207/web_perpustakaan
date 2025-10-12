@@ -72,10 +72,10 @@
     </ul>
 @else
       <div class="sidebar-brand">
-        <a href="{{ route('anggota.dashboard.index') }}">Panel User</a>
+        <a href="{{ route('anggota.dashboard.index') }}">Panel Anggota</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="{{ route('anggota.dashboard.index') }}">PU</a>
+        <a href="{{ route('anggota.dashboard.index') }}">PA</a>
       </div>
       <ul class="sidebar-menu">
         <li class="{{ Request::segment(2) === 'dashboard' ? 'active' : '' }}">
